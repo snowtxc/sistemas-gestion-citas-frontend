@@ -1,0 +1,29 @@
+.home{
+
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-template-rows: 70px auto;
+    gap: 1rem;
+
+}
+
+ 
+
+
+.header{
+    grid-column: 1/8;
+
+}
+
+.sidebar{
+    grid-column: 1/2;
+    grid-row: auto;
+
+}
+
+.content{
+    grid-column: 2/8;
+    grid-row: auto;
+
+}

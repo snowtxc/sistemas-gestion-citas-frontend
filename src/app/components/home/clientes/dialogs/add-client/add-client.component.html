@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Crear nuevo cliente</h1>
+
+
+<form [formGroup]="formAdd" (ngSubmit)="onSubmitAdd()">
+    <div mat-dialog-content>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre">
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="apellido">
+        </mat-form-field>
+    
+    
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Celular</mat-label>
+            <input matInput formControlName="celular">
+        </mat-form-field>
+    
+    
+        <div>
+            <button mat-raised-button color="primary" type="submit" [disabled]="formAdd.invalid">Crear</button>
+        </div>
+    </div>
+
+</form>

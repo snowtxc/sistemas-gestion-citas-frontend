@@ -1,0 +1,32 @@
+.client-container{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 10px;
+}
+.title h1{
+    font-size: 40px;
+    text-align: center;
+}
+
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+#acciones{
+    display: flex;
+}
+
+
+
+.add-button{
+    float: right;
+}
