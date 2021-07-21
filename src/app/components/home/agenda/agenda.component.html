@@ -1,0 +1,16 @@
+<div class="agenda-container">
+    <div class="agenda-title"><h1>AGENDA</h1></div>
+
+    <div class="agenda-buttons">
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" >
+           <a (click)="openDialogAddCita()"> <mat-icon>add</mat-icon> </a>  
+        </button>
+    </div>
+
+    
+    <div class="agenda-calendar">
+        <full-calendar [options]="calendarOptions"></full-calendar>
+    </div>
+    
+
+</div>

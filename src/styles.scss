@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
+
 *{
     margin: 0px;
     padding: 0px;
@@ -6,3 +11,14 @@
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+/* Ubicamos el date picker time al frente de todos , lo utilizamos para ponerlo frente del pop up */
+.timepicker-overlay {
+  z-index: 1100 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 1100 !important;
+}

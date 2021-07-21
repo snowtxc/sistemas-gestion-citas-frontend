@@ -26,10 +26,9 @@ export class DeleteClienteComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
   onSubmitDelete(){
     console.log(this.id);
-
   }
 
 }

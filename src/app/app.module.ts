@@ -9,6 +9,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+//Full calendar
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin! 
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin
+]);
+
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+
+
 //Components
 import { HeaderComponent } from './components/shared/header/header.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
@@ -21,7 +33,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 //Modules
-import { AngularMaterialModule } from '@modules/angular-material/angular-material.module';
+import { AngularMaterialModule } from '@modules/angular-material/angular-material.module'
+
+
+
 
 @NgModule({
   declarations: [
@@ -41,10 +56,12 @@ import { AngularMaterialModule } from '@modules/angular-material/angular-materia
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    AngularMaterialModule  
+    AngularMaterialModule,
+    FullCalendarModule
   ],
   exports: [
     AngularMaterialModule
+  
   ],
   
   providers: [],

@@ -1,3 +1,20 @@
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+   
+}
+
+
+.loading div {
+  width: 100px;
+  max-height: 100px;
+ 
+}
+
+
 .home{
 
     height: 100vh;
@@ -27,3 +44,5 @@
     grid-row: auto;
 
 }
+
+

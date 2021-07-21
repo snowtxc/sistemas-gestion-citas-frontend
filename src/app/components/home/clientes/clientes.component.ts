@@ -86,10 +86,7 @@ export class ClientesComponent implements OnInit,AfterViewInit{
   openDialogAddClient() {
     const dialogAdd = this.dialog.open(AddClientComponent);
 
-    dialogAdd.afterClosed().subscribe(result => {
-      console.log(result);
-      
-    })
+   
   }
 
   openDialogEditClient(client:ClientData){
