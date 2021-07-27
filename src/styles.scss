@@ -22,3 +22,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .timepicker-backdrop-overlay {
   z-index: 1100 !important;
 }
+
+
+.add-snackbar{
+  background-color: #124BCE;
+}
+
+
+.loading{     /*Loading spinner style */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

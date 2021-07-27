@@ -69,7 +69,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sistema-consultas-online:build"
+            "browserTarget": "sistema-consultas-online:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

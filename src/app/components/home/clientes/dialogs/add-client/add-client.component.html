@@ -7,21 +7,21 @@
             <mat-label>Nombre</mat-label>
             <input matInput formControlName="nombre">
         </mat-form-field>
-    
+
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Apellido</mat-label>
             <input matInput formControlName="apellido">
         </mat-form-field>
-    
-    
+
+
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Celular</mat-label>
             <input matInput formControlName="celular">
         </mat-form-field>
-    
-    
+
+
         <div>
-            <button mat-raised-button color="primary" type="submit" [disabled]="formAdd.invalid">Crear</button>
+            <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="true" [disabled]="formAdd.invalid">Crear</button>
         </div>
     </div>
 

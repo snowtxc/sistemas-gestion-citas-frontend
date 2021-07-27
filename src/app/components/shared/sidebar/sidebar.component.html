@@ -4,7 +4,7 @@
             <img src="./assets/images/profile-user.png"/>
         </div>
     <br>
-        <span>Rodrigo castro </span>
+        <span>{{userInfo.name}} {{userInfo.surname}} </span>
     </div>
 
     <hr>
@@ -12,12 +12,12 @@
 
     <div class="time">
         <span>{{dateInfo}}</span>
-    </div>  
+    </div>
 
     <hr>
 
     <div class="navegacion">
-        
+
         <div routerLink="./agenda" routerLinkActive="active-route"><mat-icon aria-hidden="false" aria-label="Example home icon">book icon</mat-icon>Agenda</div>
         <div routerLink="./clientes" routerLinkActive="active-route"><mat-icon aria-hidden="false" aria-label="Example home icon">person</mat-icon>Clientes</div>
     </div>

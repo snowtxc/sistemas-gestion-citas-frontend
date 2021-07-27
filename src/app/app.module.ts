@@ -8,17 +8,23 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+
 
 
 //Full calendar
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin! 
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin
 ]);
 
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+
 
 
 //Components
@@ -48,7 +54,8 @@ import { AngularMaterialModule } from '@modules/angular-material/angular-materia
     ClientesComponent,
     AgendaComponent,
     NotFoundComponent,
-    
+
+
   ],
   imports: [
     BrowserModule,
@@ -57,14 +64,21 @@ import { AngularMaterialModule } from '@modules/angular-material/angular-materia
     ReactiveFormsModule,
     FormsModule,
     AngularMaterialModule,
-    FullCalendarModule
+    FullCalendarModule,
+    HttpClientModule
   ],
   exports: [
     AngularMaterialModule
-  
+
   ],
-  
-  providers: [],
+
+  providers: [
+     {
+       provide: HTTP_INTERCEPTORS,
+       useClass:  AuthInterceptorService,
+       multi: true
+     }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

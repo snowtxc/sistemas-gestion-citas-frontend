@@ -1,5 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CitasService } from '@services/citas/citas.service';
+import { ClientesService } from '@services/clientes/clientes.service';
 
 
 //Interfaces
@@ -13,58 +16,56 @@ import { ClientData } from 'src/app/interfaces/Client';
 })
 export class AddCitaComponent implements OnInit {
 
-  clientes:ClientData []=  [
-    { id: 2, nombre: 'Manuela', apellido: 'Romero', celular: '092365444' },
-    { id: 3, nombre: 'Jesus', apellido: 'Ferreira', celular: '092365444' },
-    { id: 4, nombre: 'Maria', apellido: 'Nieves', celular: '092365444' },
-    { id: 5, nombre: 'Homero', apellido: 'Simpson', celular: '092365444' },
-    { id: 6, nombre: 'Horacio', apellido: 'Quiroga', celular: '092365444' }
-
-  ];
-    
-
-  selectedCliente= [
-    { id: 5, nombre: 'Homero', apellido: 'Simpson', celular: '092365444' }
-  ];
-
+  clientes:ClientData []=  [];
   searchable:string = 'true';
 
 
   public formAdd:FormGroup;
 
-  
-  constructor(private fb:FormBuilder) { 
+
+  constructor(private fb:FormBuilder,private citaService:CitasService, private clienteService:ClientesService,private snack: MatSnackBar) {
     this.formAdd = this.fb.group({
       cliente: ['',Validators.required],
       title: ['',Validators.required],
       motivo: ['',Validators.required],
       fecha_hora: ['',Validators.required]
-      
+
     })
-    
-    
+
+
   }
 
   ngOnInit(): void {
-    
+    this.getClientes();
+
   }
 
- 
+
 
   getClientes(){
-    this.clientes = [
-     
-    ];
+    this.clienteService.getClientes().subscribe((data) =>{
+      this.clientes = data;
+    })
   }
 
   onSubmitAdd(){
-    console.log("form");
+    const clienteID = this.formAdd.controls.cliente.value.id;
+    const title = this.formAdd.controls.title.value;
+    const motivo = this.formAdd.controls.motivo.value;
+    const fecha_hora = this.formAdd.controls.fecha_hora.value;
+
+    this.citaService.createCita(title,motivo,fecha_hora,clienteID).subscribe(data =>{
+
+      this.citaService.emitUpdateCitas();
+      this.snack.open(data.msg ,'', {duration: 3000, verticalPosition: 'bottom', horizontalPosition: 'right', panelClass: ['add-snackbar']});
+
+    })
 
   }
 
 
 
 
- 
-  
+
+
 }

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthenticationService } from '@services/authentication/authentication.service';
 
 import {timer,Subscription} from 'rxjs';
 
@@ -16,17 +17,19 @@ export class HomeComponent implements OnInit ,OnDestroy{
 
 
 
-  constructor() { 
+  constructor() {
+
+
     this.timeOutSuscription = this.timeOut.subscribe(() => {
       this.load = true;
     })
   }
 
   ngOnInit(): void {
-   
+
   }
 
- 
+
 
   ngOnDestroy(){
     this.timeOutSuscription.unsubscribe();
@@ -36,6 +39,6 @@ export class HomeComponent implements OnInit ,OnDestroy{
 
 
 
-  
+
 
 }

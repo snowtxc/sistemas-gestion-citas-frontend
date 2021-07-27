@@ -1,28 +1,38 @@
 <h1 mat-dialog-title>Detalle cita</h1>
 <div mat-dialog-content>
 
-    <div class="cita-container">
-      <h3>Cita:</h3>
-      <div><strong>Titulo: </strong><a>{{title}}</a></div>
-      <div><strong>Motivo: </strong><a>{{motivo}}</a></div>
-      <div><strong>Fecha: </strong> <a>{{fecha_hora}}</a></div>
+    <div *ngIf="!load" class="loading">
+      <mat-spinner></mat-spinner>
     </div>
 
-    <div class="cliente-container">
+
+    <div *ngIf="load">
+      <div class="cita-container" *ngIf="load">
+        <h3>Cita:</h3>
+        <div><strong>Titulo: </strong><a>{{citaInfo.title}}</a></div>
+        <div><strong>Motivo: </strong><a>{{citaInfo.motivo}}</a></div>
+        <div><strong>Fecha: </strong> <a>{{citaInfo.fecha_hora}}</a></div>
+      </div>
+
+      <div class="cliente-container">
         <h3>Cliente:</h3>
-        <div><strong>Nombre: </strong><a>{{cliente_apellido}}</a></div>
-        <div><strong>Apellido: </strong><a>{{cliente_apellido}}</a></div>
-        <div><strong>Celular: </strong><a>{{cliente_celular}}</a></div>
+        <div><strong>Nombre: </strong><a>{{citaInfo.cliente_nombre}}</a></div>
+        <div><strong>Apellido: </strong><a>{{citaInfo.cliente_apellido}}</a></div>
+        <div><strong>Celular: </strong><a>{{citaInfo.cliente_celular}}</a></div>
+      </div>
+
+      <div class="acciones-container">
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="openDialogEdit()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon"
+          (click)="openDialogDelete()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
     </div>
 
-    <div class="acciones-container">
-        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="openDialogEdit()">
-            <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon" (click)="openDialogDelete()">
-        <mat-icon>delete</mat-icon>
-        </button>
-    </div>
 
 
 </div>

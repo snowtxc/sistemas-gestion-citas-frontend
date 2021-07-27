@@ -4,8 +4,8 @@
     <div mat-dialog-content class="campos">
 
         <div class="select-client-container">
-            <ng-select [items]="clientes" bindLabel="nombre" placeholder="Seleccionar cliente" appendTo="body"
-                [(ngModel)]="selectedCliente" [searchable]="true" formControlName="cliente">
+            <ng-select [items]="clientes" bindLabel="name" placeholder="Seleccionar cliente" appendTo="body"
+                [searchable]="true" formControlName="cliente">
             </ng-select>
         </div>
 
@@ -13,24 +13,23 @@
             <mat-label>Titulo</mat-label>
             <input matInput formControlName="title">
         </mat-form-field>
-    
+
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Motivo de cita</mat-label>
             <textarea matInput style="resize: none;" formControlName="motivo"></textarea>
         </mat-form-field>
-    
-    
-    
+
+
+
         <div class="fecha-container">
             <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Fecha y hora" formControlName="fecha_hora">
             <owl-date-time #dt1></owl-date-time>
         </div>
     </div>
     <div>
-        <button mat-raised-button color="primary" type="submit" [disabled]="formAdd.invalid">Crear</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="formAdd.invalid" [mat-dialog-close]="true">Crear</button>
     </div>
 </form>
 
-    
- 
-  
+
+

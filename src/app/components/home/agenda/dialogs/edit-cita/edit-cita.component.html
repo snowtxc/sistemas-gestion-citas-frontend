@@ -1,35 +1,39 @@
 <h1 mat-dialog-title>Editar nueva cita</h1>
 
-<div mat-dialog-content class="campos">
 
-    <div class="select-client-container"> 
-        <ng-select [items]="clientes" bindLabel="clientes" placeholder="Seleccionar cliente" appendTo="body"
-            [(ngModel)]="selectedCliente" [searchable]="true">
-       </ng-select>
+<form [formGroup]="editForm" (ngSubmit)="onSubmitEdit()">
+  <div mat-dialog-content class="campos">
+
+    <div class="select-client-container">
+      <ng-select [items]="clientes" bindLabel="name" placeholder="Seleccionar cliente" appendTo="body"
+        [(ngModel)]="selectedCliente" [searchable]="true" formControlName="cliente">
+      </ng-select>
     </div>
 
 
     <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label >Titulo</mat-label>
-        <input matInput [value]="title"> 
+      <mat-label>Titulo</mat-label>
+      <input matInput [(ngModel)]="title" formControlName="title">
     </mat-form-field>
-    
+
 
     <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Motivo de cita</mat-label>
-        <textarea matInput [value]="motivo" style="resize: none;"></textarea>
+      <mat-label>Motivo de cita</mat-label>
+      <textarea matInput [(ngModel)]="motivo" style="resize: none;" formControlName="motivo"></textarea>
     </mat-form-field>
 
 
 
     <div class="fecha-container">
-        <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Fecha y hora" [value]="fecha_hora">
-        <owl-date-time #dt1></owl-date-time>
+      <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Fecha y hora" [(ngModel)]="fecha_hora" formControlName="fecha_hora">
+      <owl-date-time #dt1></owl-date-time>
     </div>
 
-</div>
+  </div>
 
+  <div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="editForm.invalid" [mat-dialog-close]="true">Editar</button>
+  </div>
 
-<div>
-    <button mat-raised-button color="primary" type="submit">Editar</button>
-</div>
+</form>
+

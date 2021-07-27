@@ -16,11 +16,11 @@ export class ViewDetailClienteComponent implements OnInit {
   apellido: string = '';
   celular: string = '';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public client_data: ClientData) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public client_data: ClientData) {
     this.id = client_data.id;
-    this.nombre = client_data.nombre;
-    this.apellido = client_data.apellido;
-    this.celular = client_data.celular;
+      this.nombre = client_data.name;
+      this.apellido = client_data.surname;
+      this.celular = client_data.phone;
   }
 
   ngOnInit(): void {

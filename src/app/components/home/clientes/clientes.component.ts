@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 //Interfaces
 import { ClientData } from "../../../interfaces/Client";
+import { ClientesService } from '@services/clientes/clientes.service';
 
 
 
@@ -25,21 +26,26 @@ import { ClientData } from "../../../interfaces/Client";
   styleUrls: ['./clientes.component.scss']
 })
 export class ClientesComponent implements OnInit,AfterViewInit{
-  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'celular','acciones'];
+  displayedColumns: string[] = ['id','name', 'surname', 'phone','acciones'];
   dataSource: MatTableDataSource<ClientData>;
 
-  @ViewChild(MatPaginator) paginator: any ;
+  @ViewChild(MatPaginator) paginator: any;
   @ViewChild(MatSort) sort: any;
-  
 
-  constructor(public dialog:MatDialog) {
-  
-    const users = this.loadClients();
-    this.dataSource = new MatTableDataSource(users);
-   
+  load = false;
+
+
+  constructor(public dialog:MatDialog,private _clientService:ClientesService) {
+    this.dataSource = new MatTableDataSource();
+    this.loadClients();
    }
 
+
+
   ngOnInit(): void {
+    this._clientService.eventSubjectUpdateClient.subscribe(() =>{
+      this.loadClients();
+    })
   }
 
   ngAfterViewInit(){
@@ -48,7 +54,7 @@ export class ClientesComponent implements OnInit,AfterViewInit{
   }
 
 
-  applyFilter(event: Event) {  
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -59,49 +65,40 @@ export class ClientesComponent implements OnInit,AfterViewInit{
 
 
 
-  loadClients(): ClientData[] {
+  loadClients(){
 
     let clients:ClientData[] =  [];
 
-    for(let x = 0 ; x < 5; x ++){
-       clients.push({
-         id: 1,
-         nombre:'Rodrigo',
-         apellido: 'Castro',
-         celular: '091234234' 
-      })
-
-      clients.push({
-        id: 1,
-        nombre: 'Mariana',
-        apellido: 'Romero',
-        celular: '091634134'
-      })
-    }
-
-    return clients;
-
+    this._clientService.getClientes().subscribe(data =>{
+      clients = data;
+      this.dataSource = new MatTableDataSource(clients);
+      this.load = true;
+    });
   }
+
+
+
+
+
+
+  //Dialogs
+
 
   openDialogAddClient() {
     const dialogAdd = this.dialog.open(AddClientComponent);
 
-   
   }
 
+
   openDialogEditClient(client:ClientData){
-    
+
     const dialogEdit = this.dialog.open(EditClienteComponent,{
       data: client
     });
-
-  
-
-
   }
 
   openDialogViewDetailClient(client:ClientData){
-    
+
     const dialogView = this.dialog.open(ViewDetailClienteComponent, {
       data: client
     });
@@ -116,7 +113,7 @@ export class ClientesComponent implements OnInit,AfterViewInit{
       data: client
     });
 
-  
+
   }
 
 

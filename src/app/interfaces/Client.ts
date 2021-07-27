@@ -1,6 +1,6 @@
 export interface ClientData {
     id: number;
-    nombre: string;
-    apellido: string;
-    celular: string;
+    name: string;
+    surname: string;
+    phone: string;
 }

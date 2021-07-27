@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthenticationService } from '@services/authentication/authentication.service';
 
 
 import { Subscription, interval } from 'rxjs';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,6 +14,15 @@ export class SidebarComponent implements OnInit, OnDestroy{
 
   dateInfo = "";
   dateTimeUpdate$ = interval(1000);
+
+  userInfo:User = {
+    id: 0,
+    name: '',
+    surname : ''
+
+  }
+
+
 
   public dateTimeSubscription : Subscription;
 
@@ -40,18 +51,22 @@ export class SidebarComponent implements OnInit, OnDestroy{
     "Domingo",
   ]
 
-  constructor() { 
+  constructor(private _auth:AuthenticationService) {
     this.getTime();
-    
+
     this.dateTimeSubscription = this.dateTimeUpdate$.subscribe(() => {
       this.getTime();
     })
+
+
   }
 
-   
+
 
   ngOnInit(): void {
-   
+    this.loadUserInfo();
+
+
   }
 
   getTime(){
@@ -65,12 +80,21 @@ export class SidebarComponent implements OnInit, OnDestroy{
     const seconds = date.getSeconds();
 
     this.dateInfo = day + " " + dayNumber + " de " + month + " " + hours+":"+minutes+":"+seconds;
-   
+
   }
+
+  loadUserInfo(){
+
+    this._auth.getUserById().subscribe(data =>{
+      this.userInfo = data;
+    });
+   }
 
   ngOnDestroy(){
     this.dateTimeSubscription.unsubscribe();
 
   }
+
+
 
 }
